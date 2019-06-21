@@ -1,7 +1,5 @@
-export function toggleLesson(lesson, module) {
-  return {
-    type: "TOGGLE_LESSON",
-    module,
-    lesson
-  };
-}
+export const toggleLesson = (lesson, module) => ({
+  type: "TOGGLE_LESSON",
+  module,
+  lesson
+});

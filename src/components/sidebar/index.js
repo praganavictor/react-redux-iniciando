@@ -2,7 +2,6 @@ import React from "react";
 
 import { connect } from "react-redux";
 import { bindActionCreators } from "redux";
-// import { Container } from './styles';
 
 import * as CourseActions from "../../store/actions/course";
 
