@@ -1,5 +1,10 @@
-export const toggleLesson = (lesson, module) => ({
-  type: "TOGGLE_LESSON",
-  module,
-  lesson
-});
+import { actionsTypes } from "../constants/course";
+
+const actions = {
+  toggleLesson: payload => ({
+    payload,
+    type: actionsTypes.TOGGLE_LESSON
+  })
+};
+
+export { actions };

@@ -1,15 +1,12 @@
-import { createStore, compose, applyMiddleware } from "redux";
+import { createStore } from "redux";
 
-import rootReducer from "./reducers";
+import { reducers } from "./reducers";
 
-const composer =
-  process.env.NODE_ENV === "development"
-    ? compose(
-        applyMiddleware(...[]),
-        console.tron.createEnhancer()
-      )
-    : applyMiddleware(...[]);
+import { loadStore, saveStore } from "./utils/store";
 
-const store = createStore(rootReducer, composer);
+const persistedStore = loadStore();
 
+const store = createStore(reducers, persistedStore);
+
+store.subscribe(() => saveStore(store.getState()));
 export default store;

@@ -1,21 +1,25 @@
 import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
+import { actions } from "../../store/actions/course";
+import { selectors } from "../../store/selectors/course";
 
-import * as CourseActions from "../../store/actions/course";
+const Sidebar = () => {
+  const allModules = useSelector(selectors.getModules);
+  const dispatch = useDispatch();
 
-const sidebar = ({ modules, toggleLesson }) => {
+  const handleClick = (module, lesson) =>
+    dispatch(actions.toggleLesson({ module, lesson }));
   return (
     <aside>
-      {modules.map(module => (
+      {allModules.map(module => (
         <div key={module.id}>
           <strong>{module.title}</strong>
           <ul>
             {module.lessons.map(lesson => (
               <li key={lesson.id}>
                 {lesson.title}
-                <button onClick={() => toggleLesson(module, lesson)}>
+                <button onClick={() => handleClick(module, lesson)}>
                   Selecionar
                 </button>
               </li>
@@ -26,14 +30,5 @@ const sidebar = ({ modules, toggleLesson }) => {
     </aside>
   );
 };
-const mapStateToProps = state => ({
-  modules: state.course.modules
-});
 
-const mapDispatchToProps = dispatch =>
-  bindActionCreators(CourseActions, dispatch);
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(sidebar);
+export default Sidebar;

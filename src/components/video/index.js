@@ -1,16 +1,17 @@
 import React from "react";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-// import { Container } from './styles';
+import { selectors } from "../../store/selectors/course";
 
-const video = ({ activeLesson, activeModule }) => (
-  <div>
-    <strong>Modulo {activeModule.title}</strong>
-    <span>Aula {activeLesson.title}</span>
-  </div>
-);
+const Video = () => {
+  const activeLesson = useSelector(selectors.getActiveLesson);
+  const activeModule = useSelector(selectors.getActiveModule);
+  return (
+    <>
+      <strong>Modulo {activeModule.title}</strong>
+      <span>Aula {activeLesson.title}</span>
+    </>
+  );
+};
 
-export default connect(state => ({
-  activeModule: state.course.activeModule,
-  activeLesson: state.course.activeLesson
-}))(video);
+export default Video;

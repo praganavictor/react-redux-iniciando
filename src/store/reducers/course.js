@@ -1,3 +1,4 @@
+import { actionsTypes } from "../constants/course";
 const INITIAL_STATE = {
   activeLesson: {},
   activeModule: {},
@@ -33,15 +34,18 @@ const INITIAL_STATE = {
   ]
 };
 
-export default function course(state = INITIAL_STATE, action) {
-  switch (action.type) {
-    case "TOGGLE_LESSON":
+const reducers = (state = INITIAL_STATE, { payload, type }) => {
+  console.log("payload", payload);
+  switch (type) {
+    case actionsTypes.TOGGLE_LESSON:
       return {
         ...state,
-        activeLesson: action.lesson,
-        activeModule: action.module
+        activeLesson: payload.lesson,
+        activeModule: payload.module
       };
     default:
       return state;
   }
-}
+};
+
+export { reducers };
