@@ -10,7 +10,7 @@ function App() {
   return (
     <div className="App">
       <Provider store={store}>
-        <h1>Branch dev funciona!</h1>
+        <h1>Branch WIP funciona!</h1>
         <Video />
         <Sidebar />
       </Provider>
